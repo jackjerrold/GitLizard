@@ -1,0 +1,1699 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap");
+@import "./theme-tokens.css";
+
+/*
+  Structural stylesheet — shared by both themes.
+  Colors, radii, and shadows all come from CSS custom properties
+  defined in theme-tokens.css and switched via the data-theme
+  attribute on <html>. This file only defines layout/shape rules
+  that reference those tokens, so it never needs to change when
+  you add a new theme — just add a new token block.
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+.eyebrow {
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  color: var(--on-surface-variant);
+  text-transform: uppercase;
+}
+
+.status-card .eyebrow {
+  color: var(--on-paper-variant);
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: "Inter", sans-serif;
+  color: var(--on-surface);
+  background: var(--background);
+  overflow: hidden;
+}
+
+/* decorative blob glow, echoing the moodboard's rounded cutout shapes */
+.app::before {
+  content: "";
+  display: var(--show-blob-glow);
+  position: fixed;
+  top: -140px;
+  right: -100px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(244, 166, 114, 0.16), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------- topbar ---------- */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--margin-lg);
+  height: 56px;
+  flex-shrink: 0;
+  background: var(--surface-container-lowest);
+  position: relative;
+  z-index: 1;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--margin-sm);
+  height: 50px;
+  width: auto;
+  font-family: var(--heading-font);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.branch-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--chip-color);
+  background: var(--chip-bg);
+  border: var(--chip-border);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+}
+
+.branch-icon {
+  color: var(--git-branch-main);
+}
+
+/* ---------- repository menu (Open / Clone / Create) ---------- */
+
+.repo-menu-wrap {
+  position: relative;
+}
+
+.repo-menu-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.repo-menu-caret {
+  font-size: 9px;
+  color: var(--on-surface-variant);
+}
+
+.repo-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 6px;
+  z-index: 10;
+}
+
+.repo-menu-item {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 9px 10px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease;
+}
+
+.repo-menu-item:hover {
+  background: var(--hover-overlay);
+}
+
+.repo-menu-icon {
+  flex-shrink: 0;
+  width: 18px;
+  text-align: center;
+  color: var(--primary);
+  font-size: 13px;
+}
+
+.repo-menu-item-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--on-paper);
+}
+
+.repo-menu-item-desc {
+  display: block;
+  font-size: 11px;
+  color: var(--on-paper-variant);
+  margin-top: 1px;
+}
+
+/* ---------- sidebar-bottom settings trigger ---------- */
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: var(--margin-md);
+  border-top: 1px solid var(--outline-variant);
+}
+
+.settings-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--on-surface-variant);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.settings-trigger:hover {
+  background: var(--surface-container);
+  color: var(--on-surface);
+}
+
+.settings-trigger-icon {
+  font-size: 14px;
+}
+
+/* ---------- full-page settings screen ---------- */
+
+.settings-page {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+  color: var(--on-surface);
+  font-family: "Inter", sans-serif;
+}
+
+.settings-page-header {
+  display: flex;
+  align-items: center;
+  gap: var(--margin-md);
+  padding: var(--margin-md) var(--margin-lg);
+  border-bottom: 1px solid var(--outline-variant);
+  flex-shrink: 0;
+}
+
+.settings-page-header h1 {
+  font-family: var(--heading-font);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.settings-page-body {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.settings-nav {
+  width: 200px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--margin-lg) var(--margin-md);
+}
+
+.settings-nav-item {
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 9px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--on-surface-variant);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.settings-nav-item:hover {
+  background: var(--surface-container);
+  color: var(--on-surface);
+}
+
+.settings-nav-item.active {
+  background: var(--tab-active-bg);
+  color: var(--tab-active-color);
+  box-shadow: var(--active-indicator);
+}
+
+.settings-panel {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--margin-lg);
+}
+
+.settings-section h2 {
+  font-family: var(--heading-font);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.settings-section-desc {
+  color: var(--on-surface-variant);
+  font-size: 13px;
+  margin-bottom: var(--margin-lg);
+  max-width: 46ch;
+}
+
+.settings-field {
+  margin-bottom: var(--margin-md);
+  max-width: 360px;
+}
+
+.settings-field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--on-surface-variant);
+  margin-bottom: 6px;
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--margin-md);
+  max-width: 640px;
+}
+
+.theme-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  background: var(--paper);
+  color: var(--on-paper);
+  border: 2px solid transparent;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--margin-md);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s ease;
+}
+
+.theme-card:hover {
+  border-color: var(--outline-variant);
+}
+
+.theme-card.active {
+  border-color: var(--primary);
+}
+
+.theme-card-swatch {
+  width: 100%;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: block;
+}
+
+.theme-card-swatch[data-theme-preview="paper"] {
+  background: linear-gradient(135deg, #141314 50%, #92cfec 50%);
+}
+
+.theme-card-swatch[data-theme-preview="navy-peach"] {
+  background: linear-gradient(135deg, #1a1730 50%, #f4a672 50%);
+}
+
+.theme-card-swatch[data-theme-preview="terminal"] {
+  background: linear-gradient(135deg, #000000 50%, #39ff14 50%);
+}
+
+.theme-card-swatch[data-theme-preview="editorial"] {
+  background: linear-gradient(135deg, #faf3e9 50%, #c1622d 50%);
+}
+
+.theme-card-swatch[data-theme-preview="lizard"] {
+  background: linear-gradient(135deg, #0d1410 50%, #5fd88a 50%);
+}
+
+.theme-card-swatch[data-theme-preview="cobalt-citrine"] {
+  background: linear-gradient(135deg, #0b1220 50%, #f4c430 50%);
+}
+
+.theme-card-label {
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.theme-card-desc {
+  font-size: 12px;
+  color: var(--on-paper-variant);
+}
+
+.theme-card-check {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* ---------- shell: sidebar + main ---------- */
+
+.shell {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  flex-shrink: 0;
+  background: var(--surface-container-lowest);
+  display: flex;
+  flex-direction: column;
+  padding: var(--margin-md);
+  gap: var(--margin-lg);
+  overflow-y: auto;
+}
+
+.repo-block {
+  padding: var(--margin-md);
+  background: var(--surface-container);
+  border-radius: var(--radius-lg);
+}
+
+.repo-name {
+  font-family: var(--heading-font);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 24px;
+  color: var(--on-surface);
+  margin-top: 4px;
+  word-break: break-word;
+}
+
+.repo-path {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--on-surface-variant);
+  margin-top: 4px;
+  word-break: break-all;
+}
+
+.sidebar-buttons {
+  margin-top: var(--margin-md);
+}
+
+.tab-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tab-list-label {
+  padding: 0 var(--unit);
+  margin-bottom: 4px;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: var(--on-surface-variant);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 11px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.tab:hover {
+  background: var(--surface-container);
+  color: var(--on-surface);
+}
+
+.tab.active {
+  background: var(--tab-active-bg);
+  color: var(--tab-active-color);
+  box-shadow: var(--active-indicator);
+}
+
+.tab-count {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(26, 23, 48, 0.15);
+  color: inherit;
+  padding: 1px 8px;
+  border-radius: var(--radius-full);
+}
+
+.tab:not(.active) .tab-count {
+  background: var(--secondary-container);
+  color: var(--on-secondary-container);
+}
+
+/* ---------- main content ---------- */
+
+.main {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--margin-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--margin-md);
+  min-height: 0;
+}
+
+/* ---------- buttons ---------- */
+
+.primary-button {
+  background: var(--primary);
+  color: var(--on-primary);
+  border: none;
+  border-radius: var(--button-radius);
+  padding: 11px 22px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.1s ease;
+}
+
+.primary-button:hover:not(:disabled) {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+.secondary-button {
+  background: var(--surface-container);
+  color: var(--on-surface);
+  border: none;
+  border-radius: var(--button-radius);
+  padding: 11px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.secondary-button:hover:not(:disabled) {
+  background: var(--surface-container-high);
+}
+
+.secondary-button.full {
+  width: 100%;
+}
+
+.ghost-button {
+  background: transparent;
+  color: var(--on-surface-variant);
+  border: none;
+  border-radius: var(--button-radius);
+  padding: 11px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.ghost-button:hover:not(:disabled) {
+  color: var(--on-surface);
+  background: var(--surface-container);
+}
+
+.ghost-button.small {
+  padding: 5px 12px;
+  font-size: 12px;
+  background: var(--secondary-container);
+  color: var(--on-secondary-container);
+}
+
+.ghost-button.small:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.text-input {
+  flex: 1;
+  background: var(--paper);
+  border: none;
+  border-radius: var(--button-radius);
+  padding: 10px 16px;
+  color: var(--on-paper);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12.5px;
+  outline: none;
+  box-shadow: inset 0 0 0 2px transparent;
+  transition: box-shadow 0.15s ease;
+}
+
+.text-input:focus {
+  box-shadow: inset 0 0 0 2px var(--primary);
+}
+
+.text-input::placeholder {
+  color: var(--on-paper-variant);
+}
+
+/* ---------- actions row ---------- */
+
+.actions {
+  display: flex;
+  gap: var(--margin-sm);
+}
+
+.commit-actions {
+  align-items: center;
+}
+
+.commit-message-input {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ---------- status / loading / message ---------- */
+
+.loading {
+  display: flex;
+  align-items: center;
+  gap: var(--margin-sm);
+  font-size: 12.5px;
+  color: var(--on-surface-variant);
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--surface-container-high);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.message {
+  padding: 12px 18px;
+  border-radius: var(--radius-lg);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.message.error {
+  background: var(--error-container);
+  color: var(--on-error-container);
+}
+
+.message.success {
+  background: var(--git-diff-add);
+  color: var(--git-diff-text-add);
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-left: var(--margin-sm);
+}
+
+/* ---------- paper card: the cream surface ---------- */
+
+.status-card {
+  background: var(--paper);
+  color: var(--on-paper);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: var(--margin-lg);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--margin-md);
+}
+
+.card-header h2 {
+  font-family: var(--heading-font);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  color: var(--on-paper);
+  margin-top: 2px;
+}
+
+.file-count {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--on-primary);
+  background: var(--primary);
+  padding: 4px 11px;
+  border-radius: var(--radius-full);
+}
+
+/* ---------- empty state ---------- */
+
+.empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--on-paper-variant);
+  font-size: 13px;
+  padding: 48px 0;
+  gap: 4px;
+}
+
+.empty-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: var(--on-primary);
+  border-radius: var(--icon-radius);
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.empty-state h3 {
+  color: var(--on-paper);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ---------- changes tab: split file list + diff ---------- */
+
+.changes-split {
+  flex: 1;
+  display: flex;
+  gap: var(--margin-md);
+  min-height: 0;
+}
+
+.file-panel {
+  flex: 0 0 320px;
+  overflow: hidden;
+}
+
+.file-panel .file-list {
+  overflow-y: auto;
+}
+
+.diff-panel {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* ---------- push, pull value count ----------*/
+
+.change-count-number{
+  background-color: var(--on-surface-variant);
+  border-radius: 50%;
+  padding: 5px 10px;
+}
+
+/* ---------- file list (Changes tab) ---------- */
+
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.file {
+  display: flex;
+  align-items: center;
+  gap: var(--margin-sm);
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease;
+}
+
+.file:hover {
+  background: var(--hover-overlay);
+}
+
+.file.selected {
+  background: var(--file-selected-bg);
+  box-shadow: var(--active-indicator);
+}
+
+.status-indicator {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+}
+
+.status-indicator.modified {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.status-indicator.added,
+.status-indicator.untracked {
+  background: var(--git-diff-text-add);
+  color: #1a3320;
+}
+
+.status-indicator.deleted {
+  background: var(--git-diff-text-remove);
+  color: #3a1414;
+}
+
+.status-indicator.renamed {
+  background: var(--secondary);
+  color: var(--on-secondary);
+}
+
+.file-path {
+  flex: 1;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12.5px;
+  color: var(--on-paper);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--on-paper-variant);
+  flex-shrink: 0;
+}
+
+/* ---------- diff viewer: a dark inset panel within the cream card ---------- */
+
+.diff-view {
+  flex: 1;
+  overflow: auto;
+  background: var(--surface-container-lowest);
+  border-radius: var(--radius-md);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12.5px;
+  line-height: 20px;
+}
+
+.diff-line {
+  display: flex;
+  white-space: pre;
+}
+
+.diff-lineno {
+  flex-shrink: 0;
+  width: 42px;
+  text-align: right;
+  padding-right: 10px;
+  color: var(--on-surface-variant);
+  opacity: 0.5;
+  user-select: none;
+}
+
+.diff-lineno.new {
+  margin-right: 10px;
+}
+
+.diff-marker {
+  flex-shrink: 0;
+  width: 16px;
+  text-align: center;
+  color: var(--on-surface-variant);
+  opacity: 0.7;
+}
+
+.diff-content {
+  flex: 1;
+  color: var(--on-surface);
+  padding-right: 12px;
+}
+
+.diff-line.add {
+  background: var(--git-diff-add-bg);
+}
+
+.diff-line.add .diff-marker {
+  color: var(--git-diff-text-add);
+  opacity: 1;
+}
+
+.diff-line.add .diff-content {
+  color: var(--git-diff-text-add);
+}
+
+.diff-line.remove {
+  background: var(--git-diff-remove-bg);
+}
+
+.diff-line.remove .diff-marker {
+  color: var(--git-diff-text-remove);
+  opacity: 1;
+}
+
+.diff-line.remove .diff-content {
+  color: var(--git-diff-text-remove);
+}
+
+.diff-line.header {
+  color: var(--primary);
+  opacity: 0.8;
+  padding: 4px 0;
+}
+
+.diff-line.header .diff-content {
+  color: var(--primary);
+}
+
+/* ---------- terminal tab ---------- */
+
+.terminal-card {
+  overflow: hidden;
+}
+
+.terminal-output {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--surface-container-lowest);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+  margin-bottom: var(--margin-sm);
+}
+
+.terminal-hint {
+  color: var(--on-surface-variant);
+}
+
+.terminal-hint .hash {
+  background: none;
+  padding: 0;
+  color: var(--primary);
+}
+
+.terminal-entry {
+  margin-bottom: 14px;
+}
+
+.terminal-prompt {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.terminal-command-line {
+  color: var(--on-surface);
+  margin-bottom: 4px;
+}
+
+.terminal-stdout,
+.terminal-stderr {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0 0 2px 14px;
+}
+
+.terminal-stdout {
+  color: var(--on-surface-variant);
+}
+
+.terminal-stderr {
+  color: var(--git-diff-text-remove);
+}
+
+.terminal-exit {
+  margin-left: 14px;
+  color: var(--error);
+  font-size: 11px;
+}
+
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface-container-lowest);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--on-surface);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12.5px;
+}
+
+.terminal-input::placeholder {
+  color: var(--on-surface-variant);
+  opacity: 0.5;
+}
+
+/* ---------- history tab ---------- */
+
+.history-body {
+  flex: 1;
+  display: flex;
+  gap: var(--margin-md);
+  min-height: 0;
+}
+
+.commit-graph-wrap {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  position: relative;
+}
+
+.commit-graph-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.commit-list {
+  list-style: none;
+  position: relative;
+}
+
+.commit-row {
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-md);
+  padding: 0 var(--margin-sm);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.commit-row:hover {
+  background: var(--hover-overlay);
+}
+
+.commit-row-selected {
+  background: var(--file-selected-bg);
+  box-shadow: var(--active-indicator);
+}
+
+.commit-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+}
+
+.commit-message {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--on-paper);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.commit-meta {
+  display: flex;
+  gap: 10px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--on-paper-variant);
+}
+
+.hash {
+  color: var(--hash-color);
+  background: var(--hash-bg);
+  padding: 1px 8px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+}
+
+.ref-badge {
+  flex-shrink: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--on-paper);
+  background: var(--surface-container-highest);
+  border: 1.5px solid var(--outline-variant);
+  padding: 0 8px;
+  border-radius: var(--radius-full);
+}
+
+/* ---------- commit detail panel ---------- */
+
+.commit-detail-panel {
+  flex: 0 0 300px;
+  overflow-y: auto;
+  background: var(--surface-container);
+  border-radius: var(--radius-lg);
+  padding: var(--margin-md);
+}
+
+.commit-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--margin-sm);
+}
+
+.commit-detail-header h3 {
+  font-family: var(--heading-font);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.commit-detail-close {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--on-surface-variant);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.commit-detail-close:hover {
+  background: var(--hover-overlay);
+}
+
+.commit-detail-message {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--on-surface);
+  margin-bottom: var(--margin-sm);
+}
+
+.commit-detail-meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 10px;
+  font-size: 11.5px;
+  margin-bottom: var(--margin-md);
+}
+
+.commit-detail-meta dt {
+  color: var(--on-surface-variant);
+  font-weight: 600;
+}
+
+.commit-detail-meta dd {
+  color: var(--on-surface);
+  font-family: "JetBrains Mono", monospace;
+  word-break: break-word;
+}
+
+.commit-detail-panel h4 {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--on-surface-variant);
+  margin-bottom: 6px;
+}
+
+.commit-file-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.commit-file {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 6px;
+  border-radius: var(--radius-md);
+}
+
+.commit-file-status {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.commit-file-added .commit-file-status {
+  background: var(--git-diff-text-add);
+  color: #1a3320;
+}
+
+.commit-file-deleted .commit-file-status {
+  background: var(--git-diff-text-remove);
+  color: #3a1414;
+}
+
+.commit-file-renamed .commit-file-status {
+  background: var(--secondary);
+  color: var(--on-secondary);
+}
+
+.commit-file-path {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11.5px;
+  color: var(--on-surface);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- branches tab ---------- */
+
+.branch-create-row {
+  display: flex;
+  gap: var(--margin-sm);
+  margin-bottom: var(--margin-md);
+}
+
+.branch-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+}
+
+.branch-row {
+  display: flex;
+  align-items: center;
+  gap: var(--margin-sm);
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  transition: background 0.15s ease;
+}
+
+.branch-row:hover {
+  background: var(--hover-overlay);
+}
+
+.branch-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--on-paper-variant);
+  flex-shrink: 0;
+}
+
+.branch-dot[data-current="true"] {
+  background: var(--primary);
+}
+
+.branch-row-name {
+  flex: 1;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12.5px;
+  color: var(--on-paper);
+}
+
+.badge {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+.badge.remote {
+  background: var(--secondary-container);
+  color: var(--on-secondary-container);
+}
+
+.badge.current {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+/* ---------- ahead/behind ---------- */
+.ahead-behind {
+  display: flex;
+  gap: 4px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+}
+.ab-ahead { color: var(--git-branch-main); }
+.ab-behind { color: var(--on-paper-variant); }
+
+/* ---------- merge modal ---------- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.modal-card {
+  background: var(--paper);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: 20px;
+  width: 640px;
+  max-width: 92vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  gap: var(--margin-md);
+}
+
+.merge-safe-banner {
+  font-size: 12.5px;
+  color: var(--on-paper);
+  background: var(--secondary-container);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+}
+.merge-safe-banner.conflict {
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+}
+
+.conflict-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--margin-md);
+  min-height: 260px;
+}
+
+.conflict-file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow-y: auto;
+  border-right: 1px solid var(--outline-variant);
+  padding-right: 8px;
+}
+
+.conflict-file-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+  background: none;
+  border: none;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11.5px;
+  color: var(--on-paper);
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  width: 100%;
+}
+.conflict-file-item[data-active="true"] { background: var(--hover-overlay); }
+.conflict-status-icon {
+  width: 14px;
+  flex-shrink: 0;
+  color: var(--on-paper-variant);
+  font-weight: 700;
+}
+.conflict-file-item[data-resolved="true"] .conflict-status-icon { color: var(--git-branch-main); }
+.conflict-file-path {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.merge-progress-row {
+  display: flex;
+  align-items: center;
+  gap: var(--margin-sm);
+}
+.merge-progress-track {
+  flex: 1;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--surface-container-lowest);
+  overflow: hidden;
+}
+.merge-progress-fill {
+  height: 100%;
+  background: var(--git-branch-main);
+  transition: width 0.2s ease;
+}
+.merge-progress-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--on-paper-variant);
+  white-space: nowrap;
+}
+
+.conflict-editor { display: flex; flex-direction: column; gap: var(--margin-md); min-width: 0; }
+
+.conflict-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--margin-sm);
+}
+
+.conflict-pane {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--outline-variant);
+  overflow: hidden;
+}
+.conflict-pane[data-side="mine"] { border-top: 3px solid var(--merge-mine, #5b8def); }
+.conflict-pane[data-side="theirs"] { border-top: 3px solid var(--merge-theirs, #e8925c); }
+
+.conflict-pane-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  background: var(--surface-container-lowest);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+}
+.conflict-side-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.conflict-side-dot[data-side="mine"] { background: var(--merge-mine, #5b8def); }
+.conflict-side-dot[data-side="theirs"] { background: var(--merge-theirs, #e8925c); }
+.conflict-side-label { font-weight: 700; color: var(--on-paper); }
+.conflict-side-tag {
+  margin-left: auto;
+  text-transform: uppercase;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: var(--on-paper-variant);
+}
+
+.conflict-pane-content {
+  flex: 1;
+  min-height: 140px;
+  max-height: 220px;
+  overflow: auto;
+  margin: 0;
+  padding: 10px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11.5px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: var(--paper);
+  color: var(--on-paper);
+}
+
+.secondary-button.full.small {
+  border-radius: 0;
+  font-size: 11.5px;
+  padding: 8px;
+}
+.secondary-button[data-side="mine"] { background: var(--merge-mine, #5b8def); }
+.secondary-button[data-side="theirs"] { background: var(--merge-theirs, #e8925c); }
+
+.conflict-result {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--outline-variant);
+  padding: 10px;
+}
+.conflict-result-header {
+  display: flex;
+  justify-content: space-between;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--on-paper-variant);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.conflict-result-source[data-side="mine"] { color: var(--merge-mine, #5b8def); }
+.conflict-result-source[data-side="theirs"] { color: var(--merge-theirs, #e8925c); }
+.conflict-result-source[data-side="mixed"] { color: var(--git-branch-main); }
+
+.conflict-textarea {
+  min-height: 120px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--outline-variant);
+  background: var(--surface-container-lowest);
+  color: var(--on-paper);
+  resize: vertical;
+}
+.conflict-side-buttons { display: flex; gap: var(--margin-sm); }
+
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  padding-top: var(--margin-sm);
+  border-top: 1px solid var(--outline-variant);
+}
+
+/* ---------- notes tab ---------- */
+/* Lives inside a .status-card wrapper (like every other tab), so it
+   already inherits the paper surface / on-paper text color — this
+   section only adds the two-pane layout on top of that. */
+
+.workspace {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  flex: 1;
+  min-height: 0;
+  background: var(--paper);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.workspace-sidebar {
+  border-right: 1px solid var(--outline-variant);
+  padding: 20px 12px;
+  overflow-y: auto;
+}
+
+.workspace-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px 16px;
+}
+
+.workspace-header h2 {
+  font-family: var(--heading-font);
+  margin: 2px 0 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--on-paper);
+}
+
+.new-file-button {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.new-file-button:hover {
+  filter: brightness(1.08);
+}
+
+.workspace-files {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.workspace-file {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 10px;
+
+  border: 0;
+  border-radius: var(--radius-md);
+
+  background: transparent;
+  color: var(--on-paper);
+  cursor: pointer;
+
+  text-align: left;
+  font-size: 13.5px;
+}
+
+.workspace-file:hover {
+  background: var(--hover-overlay);
+}
+
+.workspace-file.active {
+  background: var(--primary-container);
+}
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.editor-header {
+  height: 62px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 24px;
+
+  border-bottom: 1px solid var(--outline-variant);
+}
+
+.editor-header h2 {
+  font-family: var(--heading-font);
+  margin: 2px 0 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--on-paper);
+}
+
+.notes-editor {
+  flex: 1;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 28px;
+
+  border: 0;
+  outline: none;
+
+  resize: none;
+
+  background: transparent;
+  color: var(--on-paper);
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.editor-empty {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--on-paper-variant);
+}
+
+.editor-empty h2 {
+  color: var(--on-paper);
+  font-size: 16px;
+}
+
+.editor-empty p {
+  margin-top: 4px;
+  font-size: 13px;
+}

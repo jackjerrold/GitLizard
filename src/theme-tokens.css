@@ -1,0 +1,425 @@
+/* ---------- Theme: Obsidian & Parchment (paper on dark) ---------- */
+:root[data-theme="paper"] {
+  --background: #141314;
+  --surface-container-lowest: #0f0e0f;
+  --surface-container-low: #1b1a1a;
+  --surface-container: #201f1f;
+  --surface-container-high: #2a2828;
+  --surface-container-highest: #353232;
+
+  --paper: #211f1d;
+  --paper-raised: #26221f;
+  --on-paper: #ece7e2;
+  --on-paper-variant: #b7b0a8;
+
+  --on-surface: #ece7e2;
+  --on-surface-variant: #b7b0a8;
+
+  --primary: #92cfec;
+  --on-primary: #003546;
+  --primary-container: #5b98b4;
+  --on-primary-container: #002e3d;
+
+  --secondary: #dac3a8;
+  --on-secondary: #3c2e1b;
+  --secondary-container: #54442f;
+  --on-secondary-container: #dcc6ab;
+
+  --error: #ffb4ab;
+  --on-error: #690005;
+  --error-container: #93000a;
+  --on-error-container: #ffdad6;
+
+  --git-branch-main: #508ea9;
+  --git-diff-add: #3d503b;
+  --git-diff-remove: #5e3a3a;
+  --git-diff-text-add: #a3cf9e;
+  --git-diff-text-remove: #e5a1a1;
+  --git-diff-add-bg: rgba(163, 207, 158, 0.08);
+  --git-diff-remove-bg: rgba(229, 161, 161, 0.08);
+
+  --outline-variant: #40484c;
+
+  --radius-sm: 0.125rem;
+  --radius-default: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+  --button-radius: var(--radius-md);
+  --icon-radius: var(--radius-full);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.28);
+
+  --heading-font: "Source Serif 4", serif;
+  --show-blob-glow: none;
+
+  --chip-bg: rgba(146, 207, 236, 0.08);
+  --chip-color: var(--primary);
+  --chip-border: 1px solid rgba(146, 207, 236, 0.2);
+
+  --active-indicator: inset 2px 0 0 var(--primary);
+  --tab-active-bg: var(--paper-raised);
+  --tab-active-color: var(--primary);
+  --file-selected-bg: var(--paper-raised);
+
+  --hash-bg: transparent;
+  --hash-color: var(--primary);
+  --hover-overlay: rgba(255, 255, 255, 0.04);
+}
+
+/* ---------- Theme: Navy & Peach (light cards on navy) ---------- */
+:root[data-theme="navy-peach"] {
+  --background: #1a1730;
+  --surface-container-lowest: #191733;
+  --surface-container-low: #201c3a;
+  --surface-container: #262143;
+  --surface-container-high: #2f294f;
+  --surface-container-highest: #383159;
+
+  --paper: #f6f0e6;
+  --paper-raised: #fffbf3;
+  --on-paper: #1a1730;
+  --on-paper-variant: #6b6580;
+
+  --on-surface: #f0ece2;
+  --on-surface-variant: #a39bc4;
+
+  --primary: #f4a672;
+  --on-primary: #1a1730;
+  --primary-container: #f8c39b;
+  --on-primary-container: #3a2410;
+
+  --secondary: #cfc6ec;
+  --on-secondary: #2a2350;
+  --secondary-container: #3a3260;
+  --on-secondary-container: #d8d0f0;
+
+  --error: #e8776a;
+  --on-error: #3a0d08;
+  --error-container: #4a1712;
+  --on-error-container: #f5c4bc;
+
+  --git-branch-main: #f4a672;
+  --git-diff-add: #2e4a34;
+  --git-diff-remove: #4a2e2e;
+  --git-diff-text-add: #9fd9a8;
+  --git-diff-text-remove: #e5a1a1;
+  --git-diff-add-bg: rgba(159, 217, 168, 0.1);
+  --git-diff-remove-bg: rgba(229, 161, 161, 0.1);
+
+  --outline-variant: #3a3260;
+
+  --radius-sm: 8px;
+  --radius-default: 12px;
+  --radius-md: 14px;
+  --radius-lg: 28px;
+  --radius-xl: 36px;
+  --radius-full: 9999px;
+  --button-radius: var(--radius-full);
+  --icon-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+  --shadow-card: 0 8px 24px rgba(10, 8, 30, 0.35);
+
+  --heading-font: "Inter", sans-serif;
+  --show-blob-glow: block;
+
+  --chip-bg: var(--primary);
+  --chip-color: var(--on-primary);
+  --chip-border: none;
+
+  --active-indicator: none;
+  --tab-active-bg: var(--primary);
+  --tab-active-color: var(--on-primary);
+  --file-selected-bg: var(--primary-container);
+
+  --hash-bg: var(--primary);
+  --hash-color: var(--on-primary);
+  --hover-overlay: rgba(26, 23, 48, 0.045);
+}
+
+/* ---------- Theme: Terminal (CRT green phosphor on black) ---------- */
+:root[data-theme="terminal"] {
+  --background: #050705;
+  --surface-container-lowest: #000000;
+  --surface-container-low: #0a0f0a;
+  --surface-container: #0f150f;
+  --surface-container-high: #162016;
+  --surface-container-highest: #1e2c1e;
+
+  --paper: #0a0f0a;
+  --paper-raised: #101a10;
+  --on-paper: #c8ffc8;
+  --on-paper-variant: #6fae6f;
+
+  --on-surface: #baf5ba;
+  --on-surface-variant: #5a8a5a;
+
+  --primary: #39ff14;
+  --on-primary: #001a00;
+  --primary-container: #1a5c1a;
+  --on-primary-container: #b9ffb9;
+
+  --secondary: #ffb000;
+  --on-secondary: #2a1a00;
+  --secondary-container: #4a3200;
+  --on-secondary-container: #ffd699;
+
+  --error: #ff5555;
+  --on-error: #300000;
+  --error-container: #4a0000;
+  --on-error-container: #ffcccc;
+
+  --git-branch-main: #39ff14;
+  --git-diff-add: #163b16;
+  --git-diff-remove: #3b1616;
+  --git-diff-text-add: #7dff7d;
+  --git-diff-text-remove: #ff8f8f;
+  --git-diff-add-bg: rgba(57, 255, 20, 0.08);
+  --git-diff-remove-bg: rgba(255, 85, 85, 0.08);
+
+  --outline-variant: #1e2c1e;
+
+  /* deliberately hard-edged — no soft radii anywhere */
+  --radius-sm: 0px;
+  --radius-default: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-full: 2px;
+  --button-radius: 0px;
+  --icon-radius: 0px;
+  --shadow-card: 0 0 0 1px rgba(57, 255, 20, 0.15);
+
+  --heading-font: "JetBrains Mono", monospace;
+  --show-blob-glow: none;
+
+  --chip-bg: transparent;
+  --chip-color: var(--primary);
+  --chip-border: 1px solid var(--primary);
+
+  --active-indicator: inset 2px 0 0 var(--primary);
+  --tab-active-bg: var(--surface-container-high);
+  --tab-active-color: var(--primary);
+  --file-selected-bg: var(--surface-container-high);
+
+  --hash-bg: transparent;
+  --hash-color: var(--primary);
+  --hover-overlay: rgba(57, 255, 20, 0.06);
+}
+
+/* ---------- Theme: Warm Editorial (light, cream + terracotta) ---------- */
+:root[data-theme="editorial"] {
+  --background: #faf3e9;
+  --surface-container-lowest: #f3e9da;
+  --surface-container-low: #efe3d0;
+  --surface-container: #e8dac3;
+  --surface-container-high: #ddc9a9;
+  --surface-container-highest: #d0b98d;
+
+  --paper: #fffdf8;
+  --paper-raised: #ffffff;
+  --on-paper: #2e2116;
+  --on-paper-variant: #7a6a54;
+
+  --on-surface: #2e2116;
+  --on-surface-variant: #7a6a54;
+
+  --primary: #c1622d;
+  --on-primary: #fff8f0;
+  --primary-container: #f0c8a8;
+  --on-primary-container: #5a2c0c;
+
+  --secondary: #4f6d5a;
+  --on-secondary: #ffffff;
+  --secondary-container: #d6e3d9;
+  --on-secondary-container: #24392c;
+
+  --error: #b3261e;
+  --on-error: #ffffff;
+  --error-container: #f9dedc;
+  --on-error-container: #410e0b;
+
+  --git-branch-main: #c1622d;
+  --git-diff-add: #d6e8d9;
+  --git-diff-remove: #f3d9d6;
+  --git-diff-text-add: #2f6b3f;
+  --git-diff-text-remove: #a13a30;
+  --git-diff-add-bg: rgba(47, 107, 63, 0.08);
+  --git-diff-remove-bg: rgba(161, 58, 48, 0.08);
+
+  --outline-variant: #e3d5bf;
+
+  --radius-sm: 6px;
+  --radius-default: 10px;
+  --radius-md: 12px;
+  --radius-lg: 22px;
+  --radius-xl: 30px;
+  --radius-full: 9999px;
+  --button-radius: var(--radius-full);
+  --icon-radius: var(--radius-full);
+  --shadow-card: 0 2px 8px rgba(120, 90, 50, 0.12), 0 8px 24px rgba(120, 90, 50, 0.08);
+
+  --heading-font: "Source Serif 4", serif;
+  --show-blob-glow: none;
+
+  --chip-bg: var(--primary-container);
+  --chip-color: var(--on-primary-container);
+  --chip-border: none;
+
+  --active-indicator: none;
+  --tab-active-bg: var(--primary);
+  --tab-active-color: var(--on-primary);
+  --file-selected-bg: var(--primary-container);
+
+  --hash-bg: var(--secondary-container);
+  --hash-color: var(--on-secondary-container);
+  --hover-overlay: rgba(46, 33, 22, 0.045);
+}
+
+/* ---------- Theme: Lizard (dark greens, gitlizard house theme) ---------- */
+:root[data-theme="lizard"] {
+  --background: #0d1410;
+  --surface-container-lowest: #0a100b;
+  --surface-container-low: #121b14;
+  --surface-container: #17221a;
+  --surface-container-high: #1f2e22;
+  --surface-container-highest: #2a3d2d;
+
+  --paper: #16221a;
+  --paper-raised: #1c2b20;
+  --on-paper: #dcead9;
+  --on-paper-variant: #8fae8f;
+
+  --on-surface: #dcead9;
+  --on-surface-variant: #8fae8f;
+
+  --primary: #5fd88a;
+  --on-primary: #04220f;
+  --primary-container: #2f8a5c;
+  --on-primary-container: #d3f5df;
+
+  --secondary: #c9d94a;
+  --on-secondary: #2c3006;
+  --secondary-container: #4a5210;
+  --on-secondary-container: #e8f2a0;
+
+  --error: #ff8a65;
+  --on-error: #3a0d00;
+  --error-container: #6b2100;
+  --on-error-container: #ffd9c7;
+
+  --git-branch-main: #5fd88a;
+  --git-diff-add: #234a30;
+  --git-diff-remove: #4a2a26;
+  --git-diff-text-add: #9be8b0;
+  --git-diff-text-remove: #e5a08e;
+  --git-diff-add-bg: rgba(155, 232, 176, 0.08);
+  --git-diff-remove-bg: rgba(229, 160, 142, 0.08);
+
+  --outline-variant: #2c3d2f;
+
+  /* soft, uneven curves — scale-like rather than geometric */
+  --radius-sm: 4px;
+  --radius-default: 8px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
+  --radius-full: 9999px;
+  --button-radius: var(--radius-md);
+  --icon-radius: 55% 45% 60% 40% / 40% 55% 45% 60%;
+  --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
+
+  --heading-font: "Inter", sans-serif;
+  --show-blob-glow: none;
+
+  --chip-bg: rgba(95, 216, 138, 0.1);
+  --chip-color: var(--primary);
+  --chip-border: 1px solid rgba(95, 216, 138, 0.25);
+
+  --active-indicator: inset 2px 0 0 var(--primary);
+  --tab-active-bg: var(--paper-raised);
+  --tab-active-color: var(--primary);
+  --file-selected-bg: var(--paper-raised);
+
+  --hash-bg: transparent;
+  --hash-color: var(--primary);
+  --hover-overlay: rgba(255, 255, 255, 0.05);
+}
+
+/* ---------- Theme: Cobalt & Citrine (dark blues + yellows) ---------- */
+:root[data-theme="cobalt-citrine"] {
+  --background: #0b1220;
+  --surface-container-lowest: #070c16;
+  --surface-container-low: #0f1729;
+  --surface-container: #141d33;
+  --surface-container-high: #1c2740;
+  --surface-container-highest: #26324f;
+
+  --paper: #101a2e;
+  --paper-raised: #15213a;
+  --on-paper: #e8edf7;
+  --on-paper-variant: #93a0c0;
+
+  --on-surface: #e8edf7;
+  --on-surface-variant: #93a0c0;
+
+  --primary: #f4c430;
+  --on-primary: #2b2100;
+  --primary-container: #a8890a;
+  --on-primary-container: #fff3c9;
+
+  --secondary: #6fa8dc;
+  --on-secondary: #04203a;
+  --secondary-container: #1f4a70;
+  --on-secondary-container: #cfe4fa;
+
+  --error: #ff6b6b;
+  --on-error: #3a0000;
+  --error-container: #5c1414;
+  --on-error-container: #ffd6d6;
+
+  --git-branch-main: #f4c430;
+  --git-diff-add: #234a30;
+  --git-diff-remove: #4a2323;
+  --git-diff-text-add: #8fd9a0;
+  --git-diff-text-remove: #e59a9a;
+  --git-diff-add-bg: rgba(143, 217, 160, 0.08);
+  --git-diff-remove-bg: rgba(229, 154, 154, 0.08);
+
+  --outline-variant: #26324f;
+
+  --radius-sm: 4px;
+  --radius-default: 8px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-full: 9999px;
+  --button-radius: var(--radius-md);
+  --icon-radius: var(--radius-full);
+  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
+
+  --heading-font: "Source Serif 4", serif;
+  --show-blob-glow: none;
+
+  --chip-bg: var(--primary);
+  --chip-color: var(--on-primary);
+  --chip-border: none;
+
+  --active-indicator: none;
+  --tab-active-bg: var(--primary);
+  --tab-active-color: var(--on-primary);
+  --file-selected-bg: var(--primary-container);
+
+  --hash-bg: var(--secondary-container);
+  --hash-color: var(--on-secondary-container);
+  --hover-overlay: rgba(232, 237, 247, 0.05);
+}
+
+/* shared, non-theme-dependent spacing */
+:root {
+  --unit: 4px;
+  --gutter: 1px;
+  --sidebar-width: 260px;
+  --margin-sm: 8px;
+  --margin-md: 16px;
+  --margin-lg: 24px;
+}
