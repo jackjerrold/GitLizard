@@ -23,8 +23,10 @@ Instead of making Git feel like a collection of commands, Git Lizard aims to pro
 ---
 
 ## 📸 Screenshots
+<img width="2730" height="1960" alt="Screenshot From 2026-10-19 19-18-07" src="https://github.com/user-attachments/assets/026760e5-1017-4d2f-b4af-b69148c09b35" />
+<img width="2564" height="1600" alt="Screenshot From 2026-10-19 19-19-41" src="https://github.com/user-attachments/assets/5c0dd10e-f232-4bbc-b575-2bfda5206b18" />
+<img width="2730" height="1960" alt="Screenshot From 2026-10-19 19-18-28" src="https://github.com/user-attachments/assets/33d4382c-acb1-43e7-aadc-e4f685139cff" />
 
-*Coming soon.*
 
 ---
 
